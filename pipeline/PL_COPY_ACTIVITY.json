@@ -1,0 +1,176 @@
+{
+	"name": "PL_COPY_ACTIVITY",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy CSV ADLS",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Constituency Number",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Constituency Number",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Constituency Name",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Constituency Name",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Serial Number",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Serial Number",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Candidate Name",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Candidate Name",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Party",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Party",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "EVM Votes",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "EVM Votes",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Postal Votes",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Postal Votes",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Total Votes",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Total Votes",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Vote Percentage",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Vote Percentage",
+									"type": "String",
+									"physicalType": "String"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_source",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_Target",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}
